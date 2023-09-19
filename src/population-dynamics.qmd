@@ -110,8 +110,8 @@ kenya_data$py <- kenya_data$py.men + kenya_data$py.women
 sweden_data$py <- sweden_data$py.men + sweden_data$py.women
 
 # Function to compute the Crude Birth Rate (CBR)
-compute_cbr <- function (populationData) {
-  populationData%>% 
+compute_cbr <- function (pop_data) {
+  pop_data %>% 
     group_by(period) %>% 
       summarise(cbr = sum(births) / sum(py)) %>% 
         pull()
@@ -187,19 +187,18 @@ compute_tfr <- function (population_data) {
 }
 
 # Compute the TFR for each data set
-(world_tfr  <- compute_tfr(world_data))
-(kenya_tfr  <- compute_tfr(kenya_data))
-(sweden_tfr <- compute_tfr(sweden_data))
+world_tfr  <- compute_tfr(world_data)
+kenya_tfr  <- compute_tfr(kenya_data)
+sweden_tfr <- compute_tfr(sweden_data)
 
 # Compute totals of women and births in the world by period
-(world_data %>% 
+totals_world <- world_data %>% 
   group_by(period) %>% 
     summarise(total_women = sum(py.women),
-              total_births = sum(births)) -> 
-totals_world)
+              total_births = sum(births))
 
 # Compare how much these totals have changed
-(changes_totals <- totals_world[2,-1] / totals_world[1,-1])
+changes_totals <- totals_world[2, -1] / totals_world[1, -1]
 ```
 In general, the number of women in 2005-2010 is 2.525256 times bigger than the number of women in 1950-1955. The total number of birth in 2005-2010 is 1.37 times bigger than the total number of birth in 1950-1955.
 
@@ -283,9 +282,9 @@ compute_pop_prop <- function (pop_data) {
 }
 
 # Compute population proportion for each data set
-world_data<- compute_pop_prop(world_data)
-kenya_data<- compute_pop_prop(kenya_data)
-sweden_data<- compute_pop_prop(sweden_data)
+world_data <- compute_pop_prop(world_data)
+kenya_data <- compute_pop_prop(kenya_data)
+sweden_data <- compute_pop_prop(sweden_data)
 
 # Compute Kenyas CDR Kenya had Sweden's population distribution
 mutate(kenya_data, 
