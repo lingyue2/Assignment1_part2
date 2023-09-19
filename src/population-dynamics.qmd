@@ -118,9 +118,9 @@ compute_cbr <- function (pop_data) {
 }
 
 # Compute the CBR for each data set
-(worldcbr  <- compute_cbr(world_data))
-(kenyacbr  <- compute_cbr(kenya_data))
-(swedencbr <- compute_cbr(sweden_data))
+(world_cbr <- compute_cbr(world_data))
+(kenya_cbr  <- compute_cbr(kenya_data))
+(sweden_cbr <- compute_cbr(sweden_data))
 ```
 
 The above results show the similar pattern that for all three datasets, as the period moved from 1950-1955 to 2005-2010, the crude birth rate decreased.
@@ -223,9 +223,9 @@ compute_cdr <- function (population_data) {
 }
 
 # Compute the CDR for each data set
-(world_cdr  <- compute_cdr(world_data))
-(kenya_cdr  <- compute_cdr(kenya_data))
-(sweden_cdr <- compute_cdr(sweden_data))
+world_cdr  <- compute_cdr(world_data)
+kenya_cdr  <- compute_cdr(kenya_data)
+sweden_cdr <- compute_cdr(sweden_data)
 ```
 
 In general, the crude death rate decreases from 1950-1955 to 2005-2010. The magnitude of decrease is larger for Kenya than that for Sweden. 
@@ -250,9 +250,9 @@ compute_asdr <- function (pop_data) {
 }
 
 # Compute ASDR for each data set
-world_asdr  <- compute_asdr(world_data)
-kenya_asdr <- compute_asdr(kenya_data)
-sweden_asdr <- compute_asdr(sweden_data)
+world_data  <- compute_asdr(world_data)
+kenya_data <- compute_asdr(kenya_data)
+sweden_data <- compute_asdr(sweden_data)
 
 # Compare ASDR for Kenya and Sweden during 2005-2010
 kenya_data$asdr[16:30]
